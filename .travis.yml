@@ -1,0 +1,13 @@
+# Travis-CI script to install & test MOOSE with NeuroML
+
+install:
+
+  - svn co http://svn.code.sf.net/p/moose/code/moose/trunk/ moose
+  - cd moose 
+  - ./ubuntu-dep.sh
+  - cd
+
+script:
+
+  cd moose
+  ls -alt
