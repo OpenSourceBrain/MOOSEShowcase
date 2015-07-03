@@ -7,10 +7,10 @@ install:
   - sudo apt-get install libhdf5-serial-dev  # explicitly installing this package
   - sudo apt-get install libgsl0ldbl         # explicitly installing this package
   #- sudo -E ./ubuntu-dep.sh
-  - cd..
+  - cd ..
 
 script:
 
   - cd moose
   - ls -alt
-  - make
+  #- make
