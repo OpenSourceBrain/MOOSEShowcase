@@ -4,10 +4,11 @@ install:
 
   - svn co http://svn.code.sf.net/p/moose/code/moose/trunk/ moose
   - cd moose 
+  - sudo apt-get install libhdf5-serial-dev # explicitly installing this package
   - sudo -E ./ubuntu-dep.sh
   - cd
 
 script:
 
-  cd moose
-  ls -alt
+  - cd moose
+  - ls -alt
