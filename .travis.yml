@@ -13,4 +13,4 @@ script:
 
   - cd moose
   - ls -alt
-  #- make
+  - make
