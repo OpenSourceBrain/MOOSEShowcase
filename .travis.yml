@@ -4,7 +4,7 @@ install:
 
   - svn co http://svn.code.sf.net/p/moose/code/moose/trunk/ moose
   - cd moose 
-  - ./ubuntu-dep.sh
+  - sudo -E ./ubuntu-dep.sh
   - cd
 
 script:
