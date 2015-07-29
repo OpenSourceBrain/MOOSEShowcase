@@ -2,16 +2,14 @@
 
 install:
 
-  - svn co http://svn.code.sf.net/p/moose/code/moose/trunk/ moose
-  - cd moose 
   - sudo apt-get install libhdf5-serial-dev  # explicitly installing this package
   - sudo apt-get install libgsl0-dev         # explicitly installing this package
   - sudo apt-get install libgsl0ldbl         # explicitly installing this package
   #- sudo -E ./ubuntu-dep.sh
-  - cd ..
+  - sudo -E add-apt-repository ppa:bhallalab/moose
+  - sudo apt-get update
+  - sudo apt-get install moose-python
 
 script:
 
-  - cd moose
   - ls -alt
-  - make
