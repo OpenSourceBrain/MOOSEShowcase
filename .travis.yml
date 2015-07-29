@@ -6,10 +6,12 @@ install:
   - sudo apt-get install libgsl0-dev         # explicitly installing this package
   - sudo apt-get install libgsl0ldbl         # explicitly installing this package
   #- sudo -E ./ubuntu-dep.sh
-  - sudo -E add-apt-repository ppa:bhallalab/moose
+  - sudo add-apt-repository -y ppa:bhallalab/moose
   - sudo apt-get update
   - sudo apt-get install moose-python
 
 script:
-
+  - pwd
   - ls -alt
+  - python test.py
+
