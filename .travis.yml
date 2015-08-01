@@ -9,9 +9,5 @@ install:
 
 
 script:
-  - pwd
-  - ls -alt
-  - ls -alt /usr/lib/python2.7/dist-packages/moose-3.0.2-py2.7.egg/
-  - ls -alt /usr/lib/python2.7/dist-packages/moose-3.0.2-py2.7.egg/moose/
   - python test.py
 
