@@ -9,7 +9,7 @@ install:
 
 
 script:
-  #- ./test.sh
+  - ./test.sh
   - cd NeuroML/GranuleCell
-  - python Granule98.py -nogui
+  #- python Granule98.py -nogui
 
