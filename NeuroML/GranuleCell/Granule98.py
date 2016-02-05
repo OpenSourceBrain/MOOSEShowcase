@@ -30,6 +30,7 @@ def loadGran98NeuroML_L123(filename, nogui=False):
     resetSim(['/elec','/cells'],simdt,plotdt,simmethod='ee') # from moose.utils
     print("Running ... ")
     moose.start(runtime)
+    print("Finished simulation of %s seconds"%runtime)
 
     if not nogui:
 	from pylab import *
