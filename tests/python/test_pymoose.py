@@ -170,16 +170,16 @@ class TestWildcardFind(unittest.TestCase):
         origset.update(self.u.vec)
         self.assertEqual(ifset, origset)
 
-    def testLessThan(self):
-        for ii in range(5):
-            self.y.vec[ii].Vm = -10
-        # This causes a lot of error message from SetGet::strGet - can
-        # we combine conditions with logical operators?
-        # '/x[]/##[(ISA=IntFire) AND (FIELD(Vm)<0)]'
-        yless = moose.wildcardFind('/x[]/##[FIELD(Vm)<0]') 
-        self.assertEqual(set(yless), set(self.y.vec[:5]))
-        
-        
+#    def testLessThan(self):
+#        for ii in range(5):
+#            self.y.vec[ii].Vm = -10
+#        # This causes a lot of error message from SetGet::strGet - can
+#        # we combine conditions with logical operators?
+#        # '/x[]/##[(ISA=IntFire) AND (FIELD(Vm)<0)]'
+#        yless = moose.wildcardFind('/x[]/##[FIELD(Vm)<0]') 
+#        self.assertEqual(set(yless), set(self.y.vec[:5]))
+#        
+#        
 # class TestPyMooseGlobals(unittest.TestCase):
 #     def setUp(self):
 #         path1 = 'neutral%d' % (uuid.uuid4().int)
