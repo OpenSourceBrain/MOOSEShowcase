@@ -1,7 +1,21 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
+dist: trusty
+sudo: false  
+
+addons:
+  apt:
+    packages:
+    - libhdf5-dev
+
+language: python
+python: 2.7
+
+virtualenv:
+system_site_packages: true
+
+
 install:
-  - apt-get  install libhdf5-dev
   - git clone https://github.com/BhallaLab/moose-core.git
   - cd moose-core
   - mkdir build_
