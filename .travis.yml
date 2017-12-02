@@ -7,6 +7,12 @@ addons:
   apt:
     packages:
     - libhdf5-dev
+    - python-dev
+    - python-numpy
+    - libhdf5-dev
+    - cmake 
+    - libgsl0-dev 
+    - g++
 
 language: python
 python: 2.7
