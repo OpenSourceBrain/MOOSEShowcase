@@ -22,18 +22,22 @@ system_site_packages: true
 
 
 install:
-  - git clone https://github.com/BhallaLab/moose-core.git
+  - git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
   - cd moose-core
   - mkdir build_
   - cd build_
   - cmake ..
   - make
   - sudo make install
-  - cd ..
+  - cd ../..
+  - pwd
+  - ls -alth
 
 
 script:
   - ./test.sh
   - cd NeuroML/GranuleCell
   - python Granule98.py -nogui
+  - cd ../../moose-core/python/moose/neuroml2
+  - python run_cell.py -nogui
 
