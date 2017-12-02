@@ -28,6 +28,8 @@ install:
   - cd build_
   - cmake ..
   - make
+  - make install
+  - cd ..
 
 
 script:
