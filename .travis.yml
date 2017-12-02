@@ -1,11 +1,14 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
 install:
-  - wget http://download.opensuse.org/repositories/home:moose/xUbuntu_12.04/Release.key
-  - sudo apt-key add - < Release.key  
-  - sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/moose/xUbuntu_12.04/ /' >> /etc/apt/sources.list.d/moose.list"
-  - sudo apt-get update
-  - sudo apt-get install moose 
+  - apt-get  install libhdf5-dev
+  - git clone https://github.com/BhallaLab/moose-core.git
+  - cd moose-core
+  - mkdir build_
+  - cd build_
+  - cmake ..
+  - make
+
 
 script:
   - ./test.sh
