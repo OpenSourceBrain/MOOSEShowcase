@@ -30,7 +30,7 @@ install:
   - cmake -DDEBUG=ON -DQUIET_MODE=ON -DPYTHON_EXECUTABLE="/home/travis/virtualenv/python2.7.13/bin/python" ..
   - make
   - sudo make install
-  - cd ../..
+  - cd ..
   - cd python
   - sudo python setup.py install
   - cd ..
