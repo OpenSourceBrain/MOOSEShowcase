@@ -14,6 +14,7 @@ addons:
     - libgsl0-dev 
     - python-matplotlib 
     - python-scipy 
+    - python-lxml
     - g++
 
 language: python
@@ -23,7 +24,16 @@ virtualenv:
 system_site_packages: true
 
 
-install:
+install:  
+  - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
+  - pip install matplotlib # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
+  
+  - pip install libneuroml
+  - git clone https://github.com/NeuroML/pyNeuroML.git ## use very latest
+  - cd pyNeuroML
+  - python setup.py install
+  - cd ..
+  
   - git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
   - cd moose-core
   - mkdir build_
@@ -38,8 +48,7 @@ install:
   - cd ../../..
   - pwd
   - ls -alth
-  - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
-  - pip install matplotlib # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
+
 
 
 script:
