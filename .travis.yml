@@ -12,6 +12,8 @@ addons:
     - libhdf5-dev
     - cmake 
     - libgsl0-dev 
+    - python-matplotlib 
+    - python-scipy 
     - g++
 
 language: python
@@ -36,6 +38,7 @@ install:
   - cd ../../..
   - pwd
   - ls -alth
+  - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
 
 
 script:
