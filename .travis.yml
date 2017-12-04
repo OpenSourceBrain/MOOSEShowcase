@@ -39,6 +39,7 @@ install:
   - pwd
   - ls -alth
   - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
+  - pip install matplotlib # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
 
 
 script:
