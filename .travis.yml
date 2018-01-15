@@ -27,7 +27,6 @@ system_site_packages: true
 install:  
   - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
   - pip install matplotlib # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
-  - pip install numpy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
   
   - pip install libneuroml
   - git clone https://github.com/NeuroML/pyNeuroML.git ## use very latest
@@ -40,7 +39,7 @@ install:
   - mkdir build_
   - cd build_
   - which python
-  - cmake -DDEBUG=ON -DQUIET_MODE=ON -DPYTHON_EXECUTABLE="/home/travis/virtualenv/python2.7.13/bin/python" ..
+  - cmake -DDEBUG=ON -DQUIET_MODE=ON -DPYTHON_EXECUTABLE=`which python` ..
   - make
   - sudo make install
   - ls -alt
