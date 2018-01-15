@@ -44,7 +44,7 @@ install:
   - sudo make install
   - ls -alt
   - cd python
-  - sudo python setup.py install
+  - sudo `which python` setup.py install
   - cd ../../..
   - pwd
   - ls -alth
