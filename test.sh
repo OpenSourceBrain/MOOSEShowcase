@@ -1,5 +1,6 @@
 #!/bin/bash
 ( 
+    echo "Testing pymoose..."
     cd ./tests/python/ 
     python test_function.py
     python test_kkit.py

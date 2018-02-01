@@ -14,3 +14,5 @@ install:
 script:
   - ./test.sh
   - cd NeuroML/GranuleCell && python Granule98.py -nogui
+  - cd ../../moose-core/python/moose/neuroml2
+  - python run_cell.py -nogui
