@@ -13,5 +13,4 @@ install:
 
 script:
   - ./test.sh
-  - cd NeuroML/GranuleCell
-  - python Granule98.py -nogui
+  - cd NeuroML/GranuleCell && python Granule98.py -nogui
