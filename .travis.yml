@@ -1,6 +1,6 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
-dist: trusty
+dist: xenial
 sudo: true  
 
 addons:
@@ -20,8 +20,6 @@ addons:
 language: python
 python: 2.7
 
-virtualenv:
-system_site_packages: true
 
 
 install:  
