@@ -1,5 +1,30 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
+dist: xenial
+sudo: true  
+
+addons:
+  apt:
+    packages:
+    - libhdf5-dev
+    - python-dev
+    - python-numpy
+    - libhdf5-dev
+    - cmake 
+    - libgsl0-dev 
+    - python-matplotlib 
+    - python-scipy 
+    - python-lxml
+    - g++
+
+language: python
+python: 
+  - "2.7"
+  - "3.5"
+  #- "3.6"  ## Moose doesn't build correctly?
+
+
+
 install:
   - wget http://download.opensuse.org/repositories/home:moose/xUbuntu_14.04/Release.key
   - sudo apt-key add - < Release.key  
