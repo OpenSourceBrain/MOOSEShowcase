@@ -8,7 +8,7 @@ sys.path = ['../../python'] + sys.path
 try:
     import moose
 except ImportError:    
-    print 'Please include the directory containing moose.py and _moose.so in your PYTHONPATH environmental variable.'
+    print('Please include the directory containing moose.py and _moose.so in your PYTHONPATH environmental variable.')
     sys.exit(1)
 
 class TestVec(unittest.TestCase):
@@ -70,9 +70,9 @@ class TestNeutral1(unittest.TestCase):
         self.a = moose.Neutral(self.a_path)
         self.b = moose.Neutral(self.b_path)
         self.c = moose.Neutral(self.c_path, self.c_len)
-        print self.a_path, self.b_path
-        print self.a.path, self.b.path
-        print len(self.c.vec), self.c_len
+        print(self.a_path, self.b_path)
+        print(self.a.path, self.b.path)
+        print(len(self.c.vec), self.c_len)
                 
     def testNew(self):
         self.assertTrue(moose.exists(self.a_path))
@@ -217,7 +217,7 @@ class TestMessages(unittest.TestCase):
         self.dest1 = moose.Compartment(path2)        
 
     def testConnect(self):
-        print 'Testing connect ...',
+        print('Testing connect ...')
         msg = self.src1.connect('raxial', self.dest1, 'axial')
         outmsgs_src = self.src1.msgOut
         outmsgs_dest = self.dest1.msgOut
@@ -228,10 +228,10 @@ class TestMessages(unittest.TestCase):
             self.assertEqual(srcFieldsOnE1[0], 'raxialOut')
             destFieldsOnE2 = outmsgs_src[ii].getField('destFieldsOnE2')
             self.assertEqual(destFieldsOnE2[0], 'handleRaxial')
-        print 'OK'
+        print('OK')
 
     def testDelete(self):
-        print 'Testing delete ...',
+        print('Testing delete ...')
         msg = self.src1.connect('raxial', self.dest1, 'axial')
         src2 = moose.PulseGen('/pulsegen')
         msg2 = moose.connect(src2, 'output', self.dest1, 'injectMsg')
@@ -301,5 +301,5 @@ class TestFieldAccess(unittest.TestCase):
 #         self.assertTrue(len(x.meshToSpace) > 0)
         
 if __name__ == '__main__':
-    print 'PyMOOSE Regression Tests:'
+    print('PyMOOSE Regression Tests:')
     unittest.main()
