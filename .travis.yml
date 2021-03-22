@@ -38,6 +38,7 @@ install:
   
   - git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
   - cd moose-core
+  - git checkout update_nml2_python3
   - mkdir build_
   - cd build_
   - which python
