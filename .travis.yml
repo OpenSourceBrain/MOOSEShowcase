@@ -22,6 +22,7 @@ python:
   - "2.7"
   - "3.5"
   #- "3.6"  ## Moose doesn't build correctly?
+  - "3.7"
 
 
 
