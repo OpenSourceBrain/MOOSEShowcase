@@ -36,9 +36,9 @@ install:
   - python setup.py install
   - cd ..
   
-  - git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
+  - git clone https://github.com/BhallaLab/moose-core.git ####### BhallaLab!!!!
   - cd moose-core
-  - git checkout update_nml2_python3
+  - git checkout master
   - mkdir build_
   - cd build_
   - which python
