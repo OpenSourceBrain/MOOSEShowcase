@@ -1,6 +1,5 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
-dist: xenial
 sudo: true  
 
 addons:
@@ -18,10 +17,9 @@ addons:
     - g++
 
 language: python
+
 python: 
-  - "2.7"
-  - "3.5"
-  #- "3.6"  ## Moose doesn't build correctly?
+  - "2.7" # would be nice if it worked, but not essential
   - "3.7"
 
 
@@ -43,7 +41,7 @@ install:
   - cd build_
   - which python
   - cmake -DDEBUG=ON -DQUIET_MODE=ON -DPYTHON_EXECUTABLE=`which python` ..
-  - make
+  - make -j4
   - sudo make install
   - ls -alt
   - cd python
