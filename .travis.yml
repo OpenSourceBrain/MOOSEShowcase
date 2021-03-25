@@ -39,7 +39,7 @@ install:
   - mkdir build_
   - cd build_
   - which python
-  - cmake -DDEBUG=ON -DQUIET_MODE=ON -DPYTHON_EXECUTABLE=`which python` ..
+  - cmake -DDEBUG=ON -DCMAKE_INSTALL_PREFIX=/usr -DPYTHON_EXECUTABLE=`which python` ..
   - make -j4
   - sudo make install
   - ls -alt
