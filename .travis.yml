@@ -1,5 +1,6 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
+dist: bionic
 sudo: true  
 
 addons:
@@ -19,8 +20,8 @@ addons:
 language: python
 
 python: 
-  - "2.7" # would be nice if it worked, but not essential
-  - "3.7"
+  #- "2.7" # would be nice if it worked, but not essential
+  - "3.6"
 
 
 
@@ -28,11 +29,9 @@ install:
   - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
   - pip install matplotlib # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
   
-  - pip install libneuroml
-  - git clone https://github.com/NeuroML/pyNeuroML.git ## use very latest
-  - cd pyNeuroML
-  - python setup.py install
-  - cd ..
+  - pip install pyneuroml
+  - pip freeze
+
   
   - git clone https://github.com/BhallaLab/moose-core.git ####### BhallaLab!!!!
   - cd moose-core
@@ -49,6 +48,7 @@ install:
   - cd ../../..
   - pwd
   - ls -alth
+  - pip freeze
 
 
 
