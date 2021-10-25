@@ -28,7 +28,7 @@ jobs:
         pip install pyneuroml
     - name: Install Moose
       run: |
-        sudo apt install python-dev libpython-dev
+        sudo apt install python${{ matrix.python-version }}-dev libpython${{ matrix.python-version }}-dev
         pip list
         git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
         cd moose-core
