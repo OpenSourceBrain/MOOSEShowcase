@@ -1,0 +1,35 @@
+
+
+name: Test on Python application
+
+on:
+  push:
+    branches: [ master, dev* , test* ]
+  pull_request:
+    branches: [ master, dev* , test* ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.9 ]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python  ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version:  ${{ matrix.python-version }}
+    - name: Install pyneuroml
+      run: |
+        pip install pyneuroml
+    - name: Install Moose
+      run: |
+        pip install pymoose --user
+        pip list
+    - name: Test Moose files
+      run: |
+        python NeuroML/simple.py
+        ./test.sh
