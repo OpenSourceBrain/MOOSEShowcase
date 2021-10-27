@@ -29,4 +29,7 @@ jobs:
       run: |
         pip install pymoose --user 
         pip list
+    - name: Test Moose files
+      run: |
+        ./test.sh
 
