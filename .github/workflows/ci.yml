@@ -4,9 +4,9 @@ name: Test on Python application
 
 on:
   push:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, test* ]
   pull_request:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, test* ]
 
 jobs:
   build:
@@ -15,7 +15,6 @@ jobs:
     strategy:
       matrix:
         python-version: [ 3.9 ]
-
 
     steps:
     - uses: actions/checkout@v2
@@ -28,20 +27,10 @@ jobs:
         pip install pyneuroml
     - name: Install Moose
       run: |
-        sudo apt install python${{ matrix.python-version }}-dev libpython${{ matrix.python-version }}-dev
+        pip install pymoose --user 
         pip list
-        git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
-        cd moose-core
-        mkdir build_
-        cd build_
-        which python
-        cmake -DDEBUG=ON -DQUIET_MODE=ON -DPYTHON_EXECUTABLE=`which python` ..
-        make
-        make install
-        ls -alt
-        cd python
-        `which python` setup.py install
-        cd ../../..
-        pwd
-        ls -alth
-        pip list
+    - name: Test Moose files
+      run: |
+        #./test.sh
+        python tests/python/test_function.py
+
