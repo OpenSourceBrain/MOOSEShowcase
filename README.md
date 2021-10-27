@@ -2,5 +2,5 @@
 
 OSB Showcase project illustrating interactions between the [MOOSE simulator](http://moose.sourceforge.net) &amp; NeuroML
 
-[![Build Status](https://travis-ci.com/OpenSourceBrain/MOOSEShowcase.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/MOOSEShowcase)
+[![Test on Python application](https://github.com/OpenSourceBrain/MOOSEShowcase/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenSourceBrain/MOOSEShowcase/actions/workflows/ci.yml)
 
