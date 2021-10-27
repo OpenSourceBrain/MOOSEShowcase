@@ -4,9 +4,9 @@ name: Test on Python application
 
 on:
   push:
-    branches: [ master, development, test* ]
+    branches: [ master, dev* , test* ]
   pull_request:
-    branches: [ master, development, test* ]
+    branches: [ master, dev* , test* ]
 
 jobs:
   build:
@@ -27,10 +27,15 @@ jobs:
         pip install pyneuroml
     - name: Install Moose
       run: |
-        pip install pymoose --user 
+        pip install pymoose
         pip list
     - name: Test Moose files
       run: |
-        #./test.sh
         python tests/python/test_function.py
-
+        #./test.sh
+    - name: Test Moose files with NeuroML
+      run: |
+        cd NeuroML
+        python simple.py
+        cd GranuleCell
+        python Granule98.py -nogui

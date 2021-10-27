@@ -9,9 +9,9 @@ The soma name below is hard coded for gran98, else any other file can be used by
 import os
 os.environ['NUMPTHREADS'] = '1'
 import sys
-sys.path.append('../../../python')
+#sys.path.append('../../../python')
 import moose
-from moose.utils import *
+from moose.utils import setupTable, resetSim
 
 from moose.neuroml.NeuroML import NeuroML
 
@@ -37,35 +37,37 @@ def loadGran98NeuroML_L123(filename, nogui=False):
     print("Finished simulation of %s seconds"%runtime)
 
     if not nogui:
-        from pylab import *
-        tvec = arange(0.0,runtime,plotdt)
-        plot(tvec,somaVm.vector[1:])
-        title('Soma Vm')
-        xlabel('time (s)')
-        ylabel('Voltage (V)')
-        figure()
-        plot(tvec,somaCa.vector[1:])
-        title('Soma Ca')
-        xlabel('time (s)')
-        ylabel('Ca conc (mol/m^3)')
-        figure()
-        plot(tvec,somaIKCa.vector[1:])
-        title('KCa current (A)')
-        xlabel('time (s)')
-        ylabel('')
+        import pylab
+        import numpy as np
+        tvec = np.arange(0.0,runtime,plotdt)
+        pylab.plot(tvec,somaVm.vector[1:])
+        pylab.title('Soma Vm')
+        pylab.xlabel('time (s)')
+        pylab.ylabel('Voltage (V)')
+        pylab.figure()
+        pylab.plot(tvec,somaCa.vector[1:])
+        pylab.title('Soma Ca')
+        pylab.xlabel('time (s)')
+        pylab.ylabel('Ca conc (mol/m^3)')
+        pylab.figure()
+        pylab.plot(tvec,somaIKCa.vector[1:])
+        pylab.title('KCa current (A)')
+        pylab.xlabel('time (s)')
+        pylab.ylabel('')
         print("Showing plots ...")
-        show()
+        pylab.show()
 
 filename = "GranuleCell.net.xml"
+
 if __name__ == "__main__":
     nogui = False
     if '-nogui' in sys.argv:
         nogui = True
         sys.argv.remove('-nogui')
-        
+
     if len(sys.argv)<2:
         filename = "GranuleCell.net.xml"
     else:
         filename = sys.argv[1]
-        
+
     loadGran98NeuroML_L123(filename, nogui)

@@ -217,7 +217,7 @@ class TestMessages(unittest.TestCase):
         self.dest1 = moose.Compartment(path2)
 
     def testConnect(self):
-        print('Testing connect ...',)
+        print('Testing connect ...')
         msg = self.src1.connect('raxial', self.dest1, 'axial')
         outmsgs_src = self.src1.msgOut
         outmsgs_dest = self.dest1.msgOut
