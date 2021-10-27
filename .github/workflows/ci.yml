@@ -27,9 +27,9 @@ jobs:
         pip install pyneuroml
     - name: Install Moose
       run: |
-        pip install pymoose --user
+        pip install pymoose
         pip list
     - name: Test Moose files
       run: |
         python NeuroML/simple.py
-        ./test.sh
+        #./test.sh
