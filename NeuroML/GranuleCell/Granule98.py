@@ -64,10 +64,10 @@ if __name__ == "__main__":
     if '-nogui' in sys.argv:
         nogui = True
         sys.argv.remove('-nogui')
-        
+
     if len(sys.argv)<2:
         filename = "GranuleCell.net.xml"
     else:
         filename = sys.argv[1]
-        
+
     loadGran98NeuroML_L123(filename, nogui)

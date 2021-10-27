@@ -1,7 +1,7 @@
 # Travis-CI script to install & test MOOSE with NeuroML
 
 dist: xenial
-sudo: true  
+sudo: true
 
 addons:
   apt:
@@ -10,15 +10,15 @@ addons:
     - python-dev
     - python-numpy
     - libhdf5-dev
-    - cmake 
-    - libgsl0-dev 
-    - python-matplotlib 
-    - python-scipy 
+    - cmake
+    - libgsl0-dev
+    - python-matplotlib
+    - python-scipy
     - python-lxml
     - g++
 
 language: python
-python: 
+python:
   - "2.7"
   - "3.5"
   #- "3.6"  ## Moose doesn't build correctly?
@@ -26,16 +26,16 @@ python:
 
 
 
-install:  
+install:
   - pip install scipy # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
   - pip install matplotlib # Why is this needed? Doesn't seem to get installed correctly on trusty with addons above...
-  
+
   - pip install libneuroml
   - git clone https://github.com/NeuroML/pyNeuroML.git ## use very latest
   - cd pyNeuroML
   - python setup.py install
   - cd ..
-  
+
   - git clone https://github.com/pgleeson/moose-core.git ####### pgleeson!!!!
   - cd moose-core
   - mkdir build_
@@ -59,4 +59,3 @@ script:
   - python Granule98.py -nogui
   - cd ../../moose-core/python/moose/neuroml2
   - python run_cell.py -nogui
-
