@@ -1,6 +1,6 @@
 
 
-name: Test with Moose stable via pip
+name: Test with MOOSE --pre
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
         pip install pyneuroml
     - name: Install Moose
       run: |
-        pip install pymoose
+        pip install pymoose --pre
         pip list
     - name: Test Moose files
       run: |
