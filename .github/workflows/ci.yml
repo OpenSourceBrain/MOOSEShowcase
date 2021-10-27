@@ -31,5 +31,11 @@ jobs:
         pip list
     - name: Test Moose files
       run: |
-        python NeuroML/simple.py
+        python tests/python/test_function.py
         #./test.sh
+    - name: Test Moose files with NeuroML
+      run: |
+        cd NeuroML
+        python simple.py
+        cd GranuleCell
+        python Granule98.py -nogui
