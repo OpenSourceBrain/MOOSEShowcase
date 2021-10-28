@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# run_cell.py ---
+# run_hhcell.py ---
 #
-# Filename: run_cell.py
+# Filename: run_hhcell.py
 # Description:
 # Author:
 # Maintainer: P Gleeson
@@ -43,19 +43,63 @@
 # Code:
 
 import moose
-import moose.utils as mu
 import sys
 from moose.neuroml2.reader import NML2Reader
 import numpy as np
+
+
+def test_channel_gates():
+    """Creates prototype channels under `/library` and plots the time
+    constants (tau) and activation (minf, hinf, ninf) parameters for the
+    channel gates.
+
+    """
+    import matplotlib.pyplot as plt
+    lib = moose.Neutral('/library')
+    m = moose.element('/library[0]/naChan[0]/gateX')
+    h = moose.element('/library[0]/naChan[0]/gateY')
+    n = moose.element('/library[0]/kChan[0]/gateX')
+    v = np.linspace(n.min,n.max, n.divs+1)
+
+    plt.subplot(221)
+    plt.plot(v, 1/m.tableB, label='tau_m')
+    plt.plot(v, 1/h.tableB, label='tau_h')
+    plt.plot(v, 1/n.tableB, label='tau_n')
+    plt.legend()
+
+    plt.subplot(222)
+    plt.plot(v, m.tableA/m.tableB, label='m_inf')
+    plt.plot(v, h.tableA/h.tableB, label='h_inf')
+    plt.plot(v, n.tableA/n.tableB, label='n_inf')
+    plt.legend()
+
+    plt.subplot(223)
+    plt.plot(v, m.tableA, label='mA(alpha)')
+    plt.plot(v, h.tableA, label='hA(alpha)')
+    plt.plot(v, n.tableA, label='nA(alpha)')
+    plt.legend()
+    plt.subplot(224)
+
+    plt.plot(v, m.tableB, label='mB')
+    plt.plot(v, m.tableB-m.tableA, label='mB-A(beta)')
+
+    plt.plot(v, h.tableB, label='hB')
+    plt.plot(v, h.tableB-h.tableA, label='hB-A(beta)')
+
+    plt.plot(v, n.tableB, label='nB')
+    plt.plot(v, n.tableB-n.tableA, label='nB-nA(beta)')
+    plt.legend()
+
+    plt.show()
 
 
 def run(nogui):
 
     reader = NML2Reader(verbose=True)
 
-    filename = 'test_files/passiveCell.nml'
+    filename = 'test_files/NML2_SingleCompHHCell.nml'
     print('Loading: %s'%filename)
-    reader.read(filename)
+    reader.read(filename, symmetric=True)
 
 
     msoma = reader.getComp(reader.doc.networks[0].populations[0].id,0,0)
@@ -75,8 +119,8 @@ def run(nogui):
 
     simdt = 1e-6
     plotdt = 1e-4
-    simtime = 150e-3
-
+    simtime = 300e-3
+    #moose.showmsg( '/clock' )
     for i in range(8):
         moose.setClock( i, simdt )
     moose.setClock( 8, plotdt )
@@ -90,6 +134,11 @@ def run(nogui):
     if not nogui:
         import matplotlib.pyplot as plt
 
+        vfile = open('moose_v_hh.dat','w')
+
+        for i in range(len(t)):
+            vfile.write('%s\t%s\n'%(t[i],vm.vector[i]))
+        vfile.close()
         plt.subplot(211)
         plt.plot(t, vm.vector * 1e3, label='Vm (mV)')
         plt.legend()
@@ -100,6 +149,8 @@ def run(nogui):
         #plt.plot(t, gK.vector * 1e6, label='K')
         #plt.plot(t, gNa.vector * 1e6, label='Na')
         plt.legend()
+        plt.figure()
+        test_channel_gates()
         plt.show()
         plt.close()
 
