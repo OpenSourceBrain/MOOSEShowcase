@@ -33,9 +33,11 @@ jobs:
       run: |
         python tests/python/test_function.py
         #./test.sh
-    - name: Test simple Moose fileL
+    - name: Test simple Moose file
       run: |
         cd NeuroML
+        python -c "import moose; print(moose.__version__)"
+        echo "Running simple file"
         python simple.py
  
     - name: Test Moose files with NeuroML
