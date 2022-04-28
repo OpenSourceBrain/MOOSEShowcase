@@ -28,7 +28,7 @@ jobs:
       run: |
 
         git clone https://github.com/OpenSourceBrain/moose-core.git
-        cd moose-core')):
+        cd moose-core
         git checkout nml2_updates_2
         python setup.py install
 
