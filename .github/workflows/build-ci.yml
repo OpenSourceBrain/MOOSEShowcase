@@ -11,6 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: [ 3.7, 3.9 ]
 
@@ -46,10 +47,6 @@ jobs:
         echo "Running simple file"
         python simple.py
 
-    - name: Test Moose files with NeuroML
-      run: |
-        cd NeuroML/GranuleCell
-        python Granule98.py -nogui
 
     - name: Final version info
       run: |

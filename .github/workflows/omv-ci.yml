@@ -40,7 +40,7 @@ jobs:
         echo "Running simple file"
         python simple.py
 
-    - name: Test Moose files with NeuroML
+    - name: Test Moose files with NeuroML version 1
       run: |
         cd NeuroML/GranuleCell
         python Granule98.py -nogui

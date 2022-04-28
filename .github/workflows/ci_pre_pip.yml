@@ -33,7 +33,7 @@ jobs:
       run: |
         python tests/python/test_function.py
         #./test.sh
-    - name: Test Moose files with NeuroML
+    - name: Test Moose files with NeuroML version 1
       run: |
         cd NeuroML
         python simple.py
