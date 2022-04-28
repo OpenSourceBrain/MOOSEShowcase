@@ -1,0 +1,6 @@
+system: Test hh
+
+experiments:
+    hh:
+        expected:
+            spike times: [102.22, 118.46, 134.5, 150.51999999999998, 166.55, 182.57999999999998, 198.6]

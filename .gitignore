@@ -3,3 +3,10 @@
 /tests.log
 tests.log
 /NeuroML/*.dat
+*_moose.py
+*_nrn.py
+/NeuroML/test_files/NML2_SingleCompHHCell.nml__flattened.xml
+/NeuroML/test_files/*.dat
+/NeuroML/test_files/*.hoc
+/NeuroML/test_files/*.mod
+x86_64
