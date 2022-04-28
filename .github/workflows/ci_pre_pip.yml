@@ -39,3 +39,7 @@ jobs:
         python simple.py
         cd GranuleCell
         python Granule98.py -nogui
+
+    - name: Final version info
+      run: |
+        pip list
