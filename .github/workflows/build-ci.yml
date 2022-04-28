@@ -1,0 +1,56 @@
+name: Build from GitHub - OSB
+
+on:
+  push:
+    branches: [ master, dev* , test* ]
+  pull_request:
+    branches: [ master, dev* , test* ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.7, 3.9 ]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python  ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version:  ${{ matrix.python-version }}
+
+    - name: Install pyneuroml
+      run: |
+        pip install pyneuroml
+    - name: Install Moose from GitHub
+      run: |
+
+        git clone https://github.com/OpenSourceBrain/moose-core.git
+        cd moose-core')):
+        git checkout nml2_updates_2
+        python setup.py install
+
+        pip list
+
+    - name: Test Moose files
+      run: |
+        python tests/python/test_function.py
+        #./test.sh
+
+    - name: Test simple Moose file
+      run: |
+        cd NeuroML
+        python -c "import moose; print(moose.__version__)"
+        echo "Running simple file"
+        python simple.py
+
+    - name: Test Moose files with NeuroML
+      run: |
+        cd NeuroML/GranuleCell
+        python Granule98.py -nogui
+
+    - name: Final version info
+      run: |
+        pip list
