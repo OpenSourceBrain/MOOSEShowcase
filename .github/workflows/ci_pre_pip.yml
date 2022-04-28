@@ -40,6 +40,13 @@ jobs:
         cd GranuleCell
         python Granule98.py -nogui
 
+    - name: Install OMV
+      run: |
+        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        pip install scipy sympy matplotlib cython pandas tables
+
     - name: Final version info
       run: |
+
+        omv list -V # list installed engines
         pip list

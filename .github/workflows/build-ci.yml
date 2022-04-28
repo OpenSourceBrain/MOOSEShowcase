@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.9", "3.10" ]
+        python-version: [ "3.9" ]
 
     steps:
     - uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
 
         git clone https://github.com/OpenSourceBrain/moose-core.git
         cd moose-core
-        git checkout nml2_updates_2
+        git checkout nml2_updates_3
         python setup.py install
 
         pip list
@@ -46,6 +46,17 @@ jobs:
         python -c "import moose; print(moose.__version__)"
         echo "Running simple file"
         python simple.py
+
+    - name: Install OMV
+      run: |
+        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        pip install scipy sympy matplotlib cython pandas tables
+
+
+    - name: Test OMV on Moose
+      run: |
+        cd NeuroML/test_files
+        omv all --engine=jNeuroML_Moose
 
 
     - name: Final version info
