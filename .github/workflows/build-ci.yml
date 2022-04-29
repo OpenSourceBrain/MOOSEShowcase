@@ -32,6 +32,7 @@ jobs:
         cd moose-core
         git checkout nml2_updates_3
         
+        pip install jupyter
         pip install jupyter_packaging
         python setup.py install
 
