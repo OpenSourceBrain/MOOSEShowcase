@@ -25,6 +25,12 @@ jobs:
     - name: Install pyneuroml
       run: |
         pip install pyneuroml
+        
+
+    - name: Install OMV
+      run: |
+        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        
     - name: Install Moose from GitHub
       run: |
 
@@ -49,11 +55,6 @@ jobs:
         python -c "import moose; print(moose.__version__)"
         echo "Running simple file"
         python simple.py
-
-    - name: Install OMV
-      run: |
-        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
-        pip install scipy sympy matplotlib cython pandas tables
 
 
     - name: Test OMV on Moose
