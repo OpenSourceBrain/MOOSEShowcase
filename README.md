@@ -5,4 +5,4 @@
 [![Build from GitHub - OSB](https://github.com/OpenSourceBrain/MOOSEShowcase/actions/workflows/build-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/MOOSEShowcase/actions/workflows/build-ci.yml)
 [![Continuous build using OMV](https://github.com/OpenSourceBrain/MOOSEShowcase/actions/workflows/omv-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/MOOSEShowcase/actions/workflows/omv-ci.yml)
 
-OSB Showcase project illustrating interactions between the [MOOSE simulator](http://moose.sourceforge.net) &amp; NeuroML. See also [here](https://docs.neuroml.org/Userdocs/Software/SupportingTools.html#moose). 
+OSB Showcase project illustrating interactions between the [MOOSE simulator](https://moose.ncbs.res.in) &amp; NeuroML. See also [here](https://docs.neuroml.org/Userdocs/Software/SupportingTools.html#moose). 
