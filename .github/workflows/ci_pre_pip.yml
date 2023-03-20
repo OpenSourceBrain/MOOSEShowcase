@@ -22,12 +22,13 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version:  ${{ matrix.python-version }}
-    - name: Install pyneuroml
-      run: |
-        pip install pyneuroml
+      
 
     - name: Install Moose
       run: |
+
+        pip install libNeuroML scipy # missing(?) dependencies
+        
         pip install pymoose --pre
         pip list
 
