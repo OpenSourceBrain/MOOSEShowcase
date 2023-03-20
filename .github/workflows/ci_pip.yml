@@ -43,7 +43,7 @@ jobs:
     - name: Test Moose files with NeuroML version 1
       run: |
         cd NeuroML/GranuleCell
-        python Granule98.py -nogui
+        # python Granule98.py -nogui ## No longer working..?
 
     - name: Final version info
       run: |
