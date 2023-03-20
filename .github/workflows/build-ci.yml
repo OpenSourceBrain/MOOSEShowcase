@@ -37,7 +37,7 @@ jobs:
         pip install jupyter
         pip install jupyter_packaging
         pip install scipy
-        pip install libneuroml
+        pip install pyneuroml
         
         python setup.py install
 
