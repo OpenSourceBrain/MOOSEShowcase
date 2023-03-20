@@ -25,20 +25,28 @@ jobs:
     - name: Install pyneuroml
       run: |
         pip install pyneuroml
+
     - name: Install Moose
       run: |
         pip install pymoose --pre
         pip list
+
     - name: Test Moose files
       run: |
         python tests/python/test_function.py
         #./test.sh
-    - name: Test Moose files with NeuroML version 1
+        
+    - name: Test simple Moose file
       run: |
         cd NeuroML
+        python -c "import moose; print(moose.__version__)"
+        echo "Running simple file"
         python simple.py
-        cd GranuleCell
-        python Granule98.py -nogui
+
+    - name: Test Moose files with NeuroML version 2
+      run: |
+        cd NeuroML
+        python run_hhcell.py -nogui
 
     - name: Install OMV
       run: |

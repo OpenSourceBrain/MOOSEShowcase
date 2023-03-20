@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.8" ]
+        python-version: [ "3.8", "3.10" ]
 
     steps:
     - uses: actions/checkout@v2
@@ -33,6 +33,10 @@ jobs:
         git clone https://github.com/BhallaLab/moose-core.git
         cd moose-core
         git checkout master
+
+        pip install jupyter
+        pip install jupyter_packaging
+        pip install scipy
         
         python setup.py install
 
@@ -50,7 +54,7 @@ jobs:
         echo "Running simple file"
         python simple.py
 
-        echo "Running NeuroML file"
+        echo "Running NeuroML 2 file"
         python run_hhcell.py -nogui
 
 
@@ -60,8 +64,6 @@ jobs:
         omv all --engine=jNeuroML_Moose
 
 
-
-
     - name: Final version info
       run: |
-        pip list
+        omv list -V 
