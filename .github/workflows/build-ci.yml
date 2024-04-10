@@ -50,7 +50,7 @@ jobs:
 
     - name: Test simple Moose file
       run: |
-        cd NeuroML
+        cd NeuroML2
         python -c "import moose; print(moose.__version__)"
         echo "Running simple file"
         python simple.py
@@ -61,7 +61,7 @@ jobs:
 
     - name: Test OMV on Moose
       run: |
-        cd NeuroML/test_files
+        cd NeuroML2/test_files
         omv all --engine=jNeuroML_Moose
 
 

@@ -12,3 +12,4 @@ tests.log
 x86_64
 arm64
 __pycache__
+/NeuroML2/*.dat
