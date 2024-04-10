@@ -10,3 +10,4 @@ tests.log
 /NeuroML/test_files/*.hoc
 /NeuroML/test_files/*.mod
 x86_64
+arm64
