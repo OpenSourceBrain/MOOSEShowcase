@@ -12,3 +12,10 @@ tests.log
 x86_64
 arm64
 __pycache__
+*_code.gen.*
+/NeuroML2/GranuleCell/*.dat
+/NeuroML2/GranuleCell/*.mod
+/NeuroML2/GranuleCell/*.hoc
+*_eden.py
+*_netpyne.py
+/NeuroML2/GranuleCell/simulator.props
