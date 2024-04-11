@@ -39,14 +39,14 @@ jobs:
         
     - name: Test simple Moose file
       run: |
-        cd NeuroML
+        cd NeuroML2
         python -c "import moose; print(moose.__version__)"
         echo "Running simple file"
         python simple.py
 
     - name: Test Moose files with NeuroML version 2
       run: |
-        cd NeuroML
+        cd NeuroML2
         python run_hhcell.py -nogui
 
     - name: Install OMV
