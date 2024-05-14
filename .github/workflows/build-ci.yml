@@ -39,9 +39,12 @@ jobs:
         pip install scipy
         pip install pyneuroml
         
-        python setup.py install
+        pip install .
 
         pip list
+        
+        echo "MOOSE version:"
+        python -c "import moose; print(moose.__version__)"
 
     - name: Test Moose files
       run: |
