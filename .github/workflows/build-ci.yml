@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.8", "3.9" ]
+        python-version: [ "3.8", "3.9", "3.10", "3.11" ]
 
     steps:
     - uses: actions/checkout@v4
@@ -38,10 +38,17 @@ jobs:
         pip install jupyter_packaging
         pip install scipy
         pip install pyneuroml
+        pip install pybind11[global]
+        pip install python-libsbml
         
-        python setup.py install
+        sudo apt-get install libhdf5-dev
+        
+        pip install .
 
         pip list
+        
+        echo "MOOSE version:"
+        python -c "import moose; print(moose.__version__)"
 
     - name: Test Moose files
       run: |
