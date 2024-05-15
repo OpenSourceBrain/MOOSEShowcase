@@ -39,6 +39,8 @@ jobs:
         pip install scipy
         pip install pyneuroml
         
+        sudo apt-get install libhdf5-dev
+        
         pip install .
 
         pip list
