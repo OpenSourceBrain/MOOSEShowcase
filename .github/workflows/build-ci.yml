@@ -38,6 +38,8 @@ jobs:
         pip install jupyter_packaging
         pip install scipy
         pip install pyneuroml
+        pip install pybind11[global]
+        pip install python-libsbml
         
         sudo apt-get install libhdf5-dev
         
