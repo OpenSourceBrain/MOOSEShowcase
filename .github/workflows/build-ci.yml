@@ -51,6 +51,13 @@ jobs:
         echo "MOOSE version:"
         python -c "import moose; print(moose.__version__)"
 
+
+    - name: Install numpy < 2 if necessary...
+      if: ${{ matrix.python-version == '3.11' }}
+      run: |
+        pip install "numpy<2"
+        pip list
+
     - name: Test Moose files
       run: |
         python tests/python/test_function.py
