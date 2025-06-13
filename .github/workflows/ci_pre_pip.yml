@@ -33,9 +33,8 @@ jobs:
         pip list
 
     - name: Install numpy < 2 if necessary...
-      if: ${{ matrix.python-version == '3.11' }}
       run: |
-        pip install "numpy<2"
+        if [[  ${{ matrix.python-version }} == '3.11' ]] || [[  ${{ matrix.python-version }} == '3.12' ]]; then pip install "numpy<2" ; fi ;
         pip list
 
     - name: Test Moose files
