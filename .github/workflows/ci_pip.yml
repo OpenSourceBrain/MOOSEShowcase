@@ -28,7 +28,7 @@ jobs:
     - name: Install Moose
       run: |
 
-        pip install pyneuroml scipy # missing(?) dependencies
+        pip install pyneuroml scipy pint # missing(?) dependencies
 
         pip install pymoose
         pip list
