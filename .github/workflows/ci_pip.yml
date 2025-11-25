@@ -26,18 +26,21 @@ jobs:
         python-version:  ${{ matrix.python-version }}
 
 
+    - name: Install numpy < 2 if necessary...
+      run: |
+        pip install "numpy<2"
+        pip list
+
     - name: Install Moose
       run: |
 
+        pip install setuptools --upgrade # needed for Eden on py 3.12
+        
         pip install pyneuroml scipy pint # missing(?) dependencies
 
         pip install pymoose
         pip list
 
-    - name: Install numpy < 2 if necessary...
-      run: |
-        pip install "numpy<2"
-        pip list
 
     - name: Test Moose files
       run: |
