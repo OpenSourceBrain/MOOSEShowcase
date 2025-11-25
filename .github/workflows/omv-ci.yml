@@ -3,9 +3,9 @@ name: Continuous build using OMV
 
 on:
   push:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, experimental, test* ]
   pull_request:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, experimental, test* ]
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.9", "3.10", "3.11", "3.12"] # not yet working: "3.12"??
+        python-version: [ "3.9", "3.10", "3.11"] # not yet working: "3.12"??
         engine: [ jNeuroML, jNeuroML_NEURON, jNeuroML_validate, jNeuroML_Moose, jNeuroML_EDEN, jNeuroML_NetPyNE ]
 
     steps:
@@ -25,16 +25,18 @@ jobs:
       with:
         python-version:  ${{ matrix.python-version }}
 
+
+    - name: Install numpy < 2 if necessary...
+      run: |
+        if [[  ${{ matrix.engine }} == *"MOOSE"* ]] || [[  ${{ matrix.engine }} == *"Moose"* ]]; then pip install "numpy<2" ; fi ;
+        pip list
+
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
         pip install scipy sympy matplotlib cython pandas tables
+        pip install setuptools --upgrade # needed for Eden on py 3.12
 
-
-    - name: Install numpy < 2 if necessary...
-      run: |
-        if [[  ${{ matrix.python-version }} == '3.10' ]] || [[  ${{ matrix.python-version }} == '3.11' ]]; then pip install "numpy<2" ; fi ;
-        pip list
 
     - name: Run OMV tests on engine ${{ matrix.engine }}
       run: |

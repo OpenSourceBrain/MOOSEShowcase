@@ -11,10 +11,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
       matrix:
+        runs-on: [ubuntu-latest, ubuntu-22.04]
         python-version: ["3.9", "3.10", "3.11", "3.12"] # not yet working: "3.12"??
 
     steps:
@@ -25,19 +26,21 @@ jobs:
         python-version:  ${{ matrix.python-version }}
 
 
+    - name: Install numpy < 2 if necessary...
+      run: |
+        pip install "numpy<2"
+        pip list
+
     - name: Install Moose
       run: |
 
+        pip install setuptools --upgrade # needed for Eden on py 3.12
+        
         pip install pyneuroml scipy pint # missing(?) dependencies
 
         pip install pymoose
         pip list
 
-    - name: Install numpy < 2 if necessary...
-      if: ${{ matrix.python-version == '3.11' }}
-      run: |
-        pip install "numpy<2"
-        pip list
 
     - name: Test Moose files
       run: |
@@ -57,6 +60,20 @@ jobs:
         cd NeuroML2
         python run_hhcell.py -nogui
 
+
+    - name: Install OMV
+      run: |
+        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        pip install scipy sympy matplotlib cython pandas tables
+
+    - name: Run OMV tests
+      run: |
+        # Remove test that fails on ubuntu-latest due to jNeuroML_EDEN issues
+        if [[  ${{ matrix.runs-on }} == "ubuntu-latest" ]] ; then rm ./NeuroML2/GranuleCell/.test.jnmleden.omt ; fi ;
+        omv all -V 
+
     - name: Final version info
       run: |
+
+        omv list -V # list installed engines
         pip list
