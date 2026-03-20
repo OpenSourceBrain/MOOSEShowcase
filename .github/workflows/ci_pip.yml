@@ -34,7 +34,7 @@ jobs:
     - name: Install Moose
       run: |
 
-        pip install setuptools --upgrade # needed for Eden on py 3.12
+        pip install setuptools==80 # needed for Eden on py 3.12
         
         pip install pyneuroml scipy pint # missing(?) dependencies
 
