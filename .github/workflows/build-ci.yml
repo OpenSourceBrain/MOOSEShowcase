@@ -9,16 +9,16 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.8", "3.9", "3.10", "3.11" ]
+        python-version: [ "3.9", "3.10", "3.11", "3.12"] # not yet working: "3.12"??
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Set up Python  ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version:  ${{ matrix.python-version }}
         
@@ -40,8 +40,9 @@ jobs:
         pip install pyneuroml
         pip install pybind11[global]
         pip install python-libsbml
+        pip install pint
         
-        sudo apt-get install libhdf5-dev
+        sudo apt-get update && sudo apt-get install libhdf5-dev
         
         pip install .
 
@@ -49,6 +50,13 @@ jobs:
         
         echo "MOOSE version:"
         python -c "import moose; print(moose.__version__)"
+
+
+    - name: Install numpy < 2 if necessary...
+      if: ${{ matrix.python-version == '3.11' }}
+      run: |
+        pip install "numpy<2"
+        pip list
 
     - name: Test Moose files
       run: |
