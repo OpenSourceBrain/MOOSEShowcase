@@ -42,7 +42,7 @@ jobs:
         pip install python-libsbml
         pip install pint
         
-        sudo apt-get install libhdf5-dev
+        sudo apt-get update && sudo apt-get install libhdf5-dev
         
         pip install .
 
