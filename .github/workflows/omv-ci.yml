@@ -1,7 +1,8 @@
-
-name: Continuous build using OMV
+name: Run OMV tests
 
 on:
+  schedule:
+    - cron: "1 1 27 * *"
   push:
     branches: [ master, development, experimental, test* ]
   pull_request:
@@ -10,7 +11,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04  # for eden...
     strategy:
       fail-fast: false
       matrix:
@@ -25,7 +26,6 @@ jobs:
       with:
         python-version:  ${{ matrix.python-version }}
 
-
     - name: Install numpy < 2 if necessary...
       run: |
         if [[  ${{ matrix.engine }} == *"MOOSE"* ]] || [[  ${{ matrix.engine }} == *"Moose"* ]]; then pip install "numpy<2" ; fi ;
@@ -35,7 +35,8 @@ jobs:
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
         pip install scipy sympy matplotlib cython pandas tables
-        pip install setuptools==80 # needed for Eden on py 3.12
+        pip install setuptools==80 # needed for Eden on py >=3.12
+                
 
 
     - name: Run OMV tests on engine ${{ matrix.engine }}
@@ -46,3 +47,4 @@ jobs:
       run: |
         omv list -V # list installed engines
         env
+        pip list
